@@ -26,10 +26,12 @@
                 <ul>
                     <li><a href="/">Home</a></li>
                     <li><a href="/hotel/add">Add +</a></li>
+                    <li><a href="/user/login">Login</a></li>
+                    <li><a href="/user/register">Register</a></li>
                 </ul>
             </div>
             <div class="right-container">
-                <a href="/user/profile" class="log-out">{{name}}</a>
+                <a href="/user/{{_id}}/profile" class="log-out">{{name}}</a>
                 <a href="/user/logout" class="log-out">Logout</a>
             </div>
         </nav>
