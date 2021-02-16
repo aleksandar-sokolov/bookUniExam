@@ -8,6 +8,20 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
+router.post('/login', (req, res) => {
+    userServices.login(req.body.username, req.body.password)
+        .then(userdata => {
+            res.cookie('username', userdata.username);
+            res.cookie('email', userdata.email);
+            res.redirect('/');
+            
+        })
+        .catch(e => {
+            console.log(e);
+            res.redirect('/user/login')
+        });
+});
+
 router.get('/register', (req, res) => {
     res.render('register');
 });
@@ -19,14 +33,14 @@ router.post('/register', (req, res) => {
         data.email,
         data.password,
     )
-    .then(userdata => {
-        console.log(userdata);
-        res.redirect('/');
-    })
-    .catch(err => {
-        console.log(err);
-        res.render('register');
-    })
+        .then(userdata => {
+            console.log(userdata);
+            res.redirect('/user/login');
+        })
+        .catch(err => {
+            console.log(err);
+            res.render('register');
+        })
 
 });
 
