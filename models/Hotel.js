@@ -26,8 +26,9 @@ const hotelSchema = new moongose.Schema({
         }
     ],
     owner: {
-        type: moongose.Types.ObjectId,
-        ref: 'User'
+        type: String
+        // type: moongose.Types.ObjectId,
+        // ref: 'User'
     }
 });
 

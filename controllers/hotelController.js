@@ -1,9 +1,17 @@
-const {Router} = require('express');
+const { Router } = require('express');
 
-const router = Router(); 
+const hotelServices = require('../services/hotelServices');
+
+const router = Router();
 
 router.get('/add', (req, res) => {
     res.render('create');
+});
+// body: { hotel: 'name', city: 'city', 'free-rooms': '3', imgUrl: 'image' }
+router.post('/add', (req, res) => {
+    hotelServices.create(req.body, 'testOwner')
+        .then(() => res.redirect('/'))
+        .catch(err => console.log(err));
 });
 
 router.get('/:id/details', (req, res) => {
